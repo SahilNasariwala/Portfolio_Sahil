@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sahil Nasariwala - Front-end Developer with 2+ years of experience in Vue.js, React.js, and modern web technologies. AWS-certified professional specializing in responsive web applications and mobile development.">
-  <title>Sahil Nasariwala - Frontend Developer</title>
+  <meta name="description" content="Sahil Nasariwala - Software Engineer with 3+ years of experience in Vue.js, React.js, and modern web technologies. AWS-certified professional specializing in responsive web applications and mobile development.">
+  <title>Sahil Nasariwala - Software Engineer</title>
 
   <!--
     - favicon
@@ -49,7 +49,7 @@
         <div class="info-content">
           <h1 class="name" title="Sahil Nasariwala">Sahil Nasariwala</h1>
 
-          <p class="title">Front-end Developer</p>
+          <p class="title">Software Engineer</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -176,6 +176,10 @@
             <button class="navbar-link" data-nav-link>Portfolio</button>
           </li>
 
+          <!-- <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li> -->
+
 
 
         </ul>
@@ -198,7 +202,7 @@
 
         <section class="about-text">
           <p>
-            Results-oriented Front-end Developer with 2+ years of experience building dynamic and user-friendly web applications using Vue.js and modern JavaScript frameworks. Skilled in delivering scalable, responsive designs and optimizing application performance.
+            Results-oriented Software Engineer with 3+ years of experience building dynamic and user-friendly web applications using Vue.js and modern JavaScript frameworks. Skilled in delivering scalable, responsive designs and optimizing application performance.
           </p>
 
           <p>
@@ -268,7 +272,23 @@
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="cloud icon" width="40">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <path
+                      d="M31 28c2.76 0 5-2.24 5-5a5 5 0 0 0-5-5h-1.26A8 8 0 0 0 9 18.4V19a5 5 0 0 0 0 10h22z"
+                      stroke="#FFD700"
+                      stroke-width="2"
+                      fill="none"
+                    />
+                    <path
+                      d="M17 13a6 6 0 0 1 11.35 2.24A7 7 0 0 1 34 22a7 7 0 0 1-7 7H11a7 7 0 0 1 0-14c.35 0 .68.02 1 .05A6 6 0 0 1 17 13zm2 0v0a4 4 0 0 0-4 4c0 2.21 1.79 4 4 4s4-1.79 4-4a4 4 0 0 0-4-4z"
+                      stroke="#FFD700"
+                      stroke-width="2"
+                      fill="none"
+                      opacity="0.8"
+                    />
+                  </g>
+                </svg>
               </div>
 
               <div class="service-content-box">
@@ -292,11 +312,6 @@
 
 
       </article>
-
-
-
-
-
       <!--
         - #RESUME
       -->
@@ -350,36 +365,36 @@
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Software Engineer</h4>
+              <h4 class="h4 timeline-item-title">Software Engineer @ Motadata</h4>
 
               <span>May 2025 — Present</span>
 
               <p class="timeline-text">
-                Motadata - Developed intuitive UI components for real-time metric, log, and flow monitoring in an AI-driven IT operations platform. Enhanced dashboarding, alerting, and automation features with ML-powered insights.
+                Developed intuitive UI components for real-time metric, log, and flow monitoring in an AI-driven IT operations platform. Enhanced dashboarding, alerting, and automation features with ML-powered insights.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">Frontend Developer</h4>
+              <h4 class="h4 timeline-item-title">Frontend Developer @ Meditab Software</h4>
 
               <span>Dec 2022 — Apr 2025</span>
 
               <p class="timeline-text">
-                Meditab Software, Ahmedabad - Designed and implemented a high-performance healthcare system using Vue.js and Vuetify, improving user engagement by 25%. Optimized frontend performance, reducing load time by 30%.
+                Designed and implemented a high-performance healthcare system using Vue.js and Vuetify, improving user engagement by 25%. Optimized frontend performance, reducing load time by 30%.
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">ReactJS Intern</h4>
+              <h4 class="h4 timeline-item-title">ReactJS Intern @ Tatvasoft</h4>
 
               <span>May 2022 — Jun 2022</span>
 
               <p class="timeline-text">
-                Tatvasoft, Ahmedabad - Developed and implemented modules for an E-commerce website (Book-e-Sell) using React.js, improving user experience. Optimized UI components for performance and smooth backend integration.
+                Developed and implemented modules for an E-commerce website (Book-e-Sell) using React.js, improving user experience. Optimized UI components for performance and smooth backend integration.
               </p>
 
             </li>
@@ -598,12 +613,41 @@
       </article>
 
 
+      <!--
+        - #CONTACT
+      -->
 
+      <article class="contact" data-page="contact">
 
+        <header>
+          <h2 class="h2 article-title">Contact me</h2>
+        </header>
 
+        <form class="contact-form" action="mailto:sahilnasariwala123@gmail.com" method="POST" enctype="text/plain">
 
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" name="name" id="contact-name" class="form-input" placeholder="Your name" required>
+          </div>
 
-      
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" name="email" id="contact-email" class="form-input" placeholder="Your email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea name="message" id="contact-message" class="form-input" rows="5" placeholder="Your message" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">
+            <span>Send Message</span>
+            <ion-icon name="send-outline"></ion-icon>
+          </button>
+
+        </form>
+
+      </article>
 
     </div>
 
