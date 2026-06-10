@@ -10,6 +10,10 @@
   var hasLenis = typeof window.Lenis !== "undefined";
   var finePointer = window.matchMedia("(pointer: fine)").matches;
 
+  /* sessionStorage can throw (blocked cookies/partitioned contexts) — never let it kill the page */
+  function getSeen() { try { return sessionStorage.getItem("seenIntro"); } catch (e) { return "1"; } }
+  function setSeen() { try { sessionStorage.setItem("seenIntro", "1"); } catch (e) {} }
+
   /* ---------- Always-on basics (no motion deps) ---------- */
   var yearEl = document.querySelector("[data-year]");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -41,6 +45,7 @@
   gsap.registerPlugin(ScrollTrigger);
   if (hasSplit) gsap.registerPlugin(SplitText);
   document.documentElement.classList.add("js-motion");
+  window.__motionBooted = true; // inline head failsafe checks this
 
   /* ---------- Lenis smooth scroll ---------- */
   if (hasLenis) {
@@ -79,8 +84,8 @@
       .to(heroReveals, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.08 }, "-=0.6");
   }
 
-  if (pre && !sessionStorage.getItem("seenIntro")) {
-    sessionStorage.setItem("seenIntro", "1");
+  if (pre && !getSeen()) {
+    setSeen();
     var counter = { v: 0 };
     gsap.timeline()
       .to(counter, {
@@ -144,6 +149,7 @@
         el.textContent = n + suffix;
       }
     });
+    el.textContent = (decimals ? (0).toFixed(decimals) : "0") + suffix;
   });
 
   /* ---------- Magnetic buttons (fine pointers only) ---------- */
@@ -155,11 +161,11 @@
         gsap.to(btn, {
           x: (e.clientX - r.left - r.width / 2) * strength,
           y: (e.clientY - r.top - r.height / 2) * strength,
-          duration: 0.4, ease: "power3.out"
+          duration: 0.4, ease: "power3.out", overwrite: "auto"
         });
       });
       btn.addEventListener("mouseleave", function () {
-        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.4)" });
+        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.4)", overwrite: "auto" });
       });
     });
   }
@@ -169,10 +175,13 @@
     var cursor = document.querySelector("[data-cursor]");
     if (cursor) {
       document.documentElement.classList.add("js-cursor");
-      gsap.set(cursor, { xPercent: -50, yPercent: -50 }); // JS owns centering; composes with x/y
+      gsap.set(cursor, { xPercent: -50, yPercent: -50, autoAlpha: 0 }); // JS owns centering; composes with x/y
       var setX = gsap.quickTo(cursor, "x", { duration: 0.18, ease: "power3.out" });
       var setY = gsap.quickTo(cursor, "y", { duration: 0.18, ease: "power3.out" });
       window.addEventListener("mousemove", function (e) { setX(e.clientX); setY(e.clientY); });
+      window.addEventListener("mousemove", function () {
+        gsap.to(cursor, { autoAlpha: 1, duration: 0.2 });
+      }, { once: true });
       document.querySelectorAll("a, button").forEach(function (el) {
         el.addEventListener("mouseenter", function () { cursor.classList.add("is-hover"); });
         el.addEventListener("mouseleave", function () { cursor.classList.remove("is-hover"); });
@@ -182,13 +191,18 @@
 
   /* ---------- Anchor links through Lenis ---------- */
   if (hasLenis) {
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach(function (a) {
       a.addEventListener("click", function (e) {
         var target = document.querySelector(a.getAttribute("href"));
         if (!target) return;
         e.preventDefault();
-        lenis.scrollTo(target, { offset: -70 });
+        lenis.scrollTo(target, { offset: -80 });
       });
     });
+  }
+
+  /* webfonts (Fontshare/Google) land after init and shift layout — re-measure triggers */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   }
 })();

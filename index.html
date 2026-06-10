@@ -31,7 +31,7 @@
   <link rel="apple-touch-icon" href="./assets/favicon/favicon-180.png">
   <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!-- preloader gate: show overlay from first paint only when motion is wanted and intro not yet seen; failsafe removes it if the CDN never loads -->
+  <!-- preloader gate: show overlay from first paint only when motion is wanted and intro not yet seen; failsafe removes it if the motion system never boots -->
   <script>
     (function () {
       try {
@@ -39,7 +39,7 @@
             !sessionStorage.getItem("seenIntro")) {
           document.documentElement.classList.add("js-motion");
           setTimeout(function () {
-            if (!window.gsap || !window.ScrollTrigger) {
+            if (!window.__motionBooted) {
               document.documentElement.classList.remove("js-motion");
             }
           }, 3000);
