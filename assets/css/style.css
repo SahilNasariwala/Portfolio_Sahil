@@ -18,7 +18,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: no-preference) {
-  html.has-lenis { scroll-behavior: auto; } /* Lenis takes over */
+  /* "smooth-active" must NOT contain the substring "lenis" — Lenis regex-strips
+     lenis-prefixed classes from <html> and would destroy the token */
+  html.smooth-active { scroll-behavior: auto; } /* Lenis takes over */
 }
 body {
   background: var(--bg);
@@ -135,7 +137,8 @@ html.js-cursor .cursor { display: block; }
 .hero-eyebrow { color: var(--accent); margin-bottom: 18px; }
 .hero-name {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(3.2rem, 12vw, 11rem);
+  /* min 2.4rem: "NASARIWALA." must fit a 375px viewport minus padding */
+  font-size: clamp(2.4rem, 12vw, 11rem);
   line-height: 0.95; letter-spacing: -0.02em;
   text-transform: uppercase;
 }
@@ -187,9 +190,14 @@ html.js-cursor .cursor { display: block; }
 .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
 .about-lead { font-size: clamp(1.25rem, 2.4vw, 2rem); line-height: 1.45; font-weight: 500; }
 .about-lead .w { opacity: 1; } /* JS sets per-word opacity */
-.about-portrait { border-radius: 14px; overflow: hidden; background: var(--bg-soft); }
-.about-portrait img { width: 100%; filter: grayscale(35%); transition: filter 0.4s; }
-.about-portrait:hover img { filter: grayscale(0%); }
+.about-card { border: 1px solid var(--faint); border-radius: 14px; background: var(--bg-soft); padding: clamp(20px, 2.5vw, 32px); }
+.about-facts li {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
+  padding: 13px 0; border-bottom: 1px solid var(--faint);
+}
+.about-facts li:last-child { border-bottom: none; }
+.about-facts span { color: var(--muted); flex: none; }
+.about-facts strong { font-weight: 500; text-align: right; }
 
 /* ============ EXPERIENCE ============ */
 .xp-list { display: flex; flex-direction: column; }
@@ -325,7 +333,7 @@ html.js-cursor .cursor { display: block; }
 /* ============ RESPONSIVE ============ */
 @media (max-width: 900px) {
   .about-grid, .edu-grid { grid-template-columns: 1fr; }
-  .about-portrait { max-width: 320px; }
+  .about-card { max-width: 420px; }
   .xp-item { grid-template-columns: 1fr; gap: 18px; }
   .work-row { grid-template-columns: 1fr auto; }
   .work-num, .work-cat { display: none; }

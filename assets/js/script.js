@@ -49,7 +49,7 @@
 
   /* ---------- Lenis smooth scroll ---------- */
   if (hasLenis) {
-    document.documentElement.classList.add("has-lenis");
+    document.documentElement.classList.add("smooth-active"); // not "has-lenis": Lenis strips *lenis* classes
     var lenis = new Lenis({ duration: 1.15 });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
@@ -123,15 +123,6 @@
     gsap.fromTo(split.words, { opacity: 0.18 }, {
       opacity: 1, stagger: 0.04, ease: "none",
       scrollTrigger: { trigger: aboutLead, start: "top 80%", end: "bottom 55%", scrub: true }
-    });
-  }
-
-  /* ---------- Portrait parallax ---------- */
-  var portrait = document.querySelector("[data-parallax] img");
-  if (portrait) {
-    gsap.fromTo(portrait, { y: -28 }, {
-      y: 28, ease: "none",
-      scrollTrigger: { trigger: portrait, start: "top bottom", end: "bottom top", scrub: true }
     });
   }
 
