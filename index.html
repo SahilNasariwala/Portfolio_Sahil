@@ -31,6 +31,23 @@
   <link rel="apple-touch-icon" href="./assets/favicon/favicon-180.png">
   <link rel="stylesheet" href="./assets/css/style.css">
 
+  <!-- preloader gate: show overlay from first paint only when motion is wanted and intro not yet seen; failsafe removes it if the CDN never loads -->
+  <script>
+    (function () {
+      try {
+        if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches &&
+            !sessionStorage.getItem("seenIntro")) {
+          document.documentElement.classList.add("js-motion");
+          setTimeout(function () {
+            if (!window.gsap || !window.ScrollTrigger) {
+              document.documentElement.classList.remove("js-motion");
+            }
+          }, 3000);
+        }
+      } catch (e) { /* sessionStorage blocked — skip preloader */ }
+    })();
+  </script>
+
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

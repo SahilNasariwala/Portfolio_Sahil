@@ -77,7 +77,7 @@ html.js-motion .preloader { display: flex; }
   background: var(--accent);
   pointer-events: none;
   display: none;
-  transform: translate(-50%, -50%);
+  /* centering owned by JS (xPercent/yPercent) — see script.js */
   mix-blend-mode: difference;
   transition: width 0.25s, height 0.25s;
 }
