@@ -10,18 +10,18 @@
   <meta name="description" content="Sahil Nasariwala is a Frontend Engineer with 3.5+ years building scalable enterprise web applications in Vue.js, React, and TypeScript — high-performance analytics dashboards, automation systems, and design systems.">
   <meta name="author" content="Sahil Nasariwala">
   <meta name="keywords" content="Sahil Nasariwala, Frontend Engineer, Vue.js, React, TypeScript, Software Engineer, Web Developer, Playwright, AWS, Ahmedabad">
-  <meta name="theme-color" content="#0e0d0c">
+  <meta name="theme-color" content="#0e0e11">
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sahil Nasariwala — Frontend Engineer">
   <meta property="og:description" content="3.5+ years building scalable enterprise web apps in Vue.js, React & TypeScript. Analytics dashboards, automation systems, design systems.">
-  <meta property="og:image" content="./assets/images/my-avatar.png">
+  <meta property="og:image" content="https://sahilnasariwala.dev/assets/images/my-avatar.png">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Sahil Nasariwala — Frontend Engineer">
   <meta name="twitter:description" content="3.5+ years building scalable enterprise web apps in Vue.js, React & TypeScript.">
-  <meta name="twitter:image" content="./assets/images/my-avatar.png">
+  <meta name="twitter:image" content="https://sahilnasariwala.dev/assets/images/my-avatar.png">
 
   <link rel="canonical" href="https://sahilnasariwala.dev/">
   <link rel="icon" href="./assets/favicon/favicon.ico" sizes="any">
@@ -31,10 +31,31 @@
   <link rel="apple-touch-icon" href="./assets/favicon/favicon-180.png">
   <link rel="stylesheet" href="./assets/css/style.css">
 
+  <!-- preloader gate: show overlay from first paint only when motion is wanted and intro not yet seen; failsafe removes it if the motion system never boots -->
+  <script>
+    (function () {
+      try {
+        if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches &&
+            !sessionStorage.getItem("seenIntro")) {
+          document.documentElement.classList.add("js-motion");
+          setTimeout(function () {
+            if (!window.__motionBooted) {
+              document.documentElement.classList.remove("js-motion");
+            }
+          }, 3000);
+        }
+      } catch (e) { /* sessionStorage blocked — skip preloader */ }
+    })();
+  </script>
+
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
 
   <!-- structured data: Person -->
   <script type="application/ld+json">
@@ -71,324 +92,269 @@
 
 <body>
 
-  <div class="grain" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- ================= NAV ================= -->
-  <header class="site-nav" data-nav>
-    <a href="#hero" class="nav-brand">SN<span>.</span></a>
+<div class="preloader" data-preloader aria-hidden="true">
+  <div class="preloader-inner">
+    <span class="preloader-name">Sahil Nasariwala</span>
+    <span class="preloader-count mono" data-preloader-count>0</span>
+  </div>
+</div>
 
-    <nav class="nav-links">
-      <a href="#about" class="nav-link" data-nav-target>About</a>
-      <a href="#experience" class="nav-link" data-nav-target>Experience</a>
-      <a href="#skills" class="nav-link" data-nav-target>Skills</a>
-      <a href="#work" class="nav-link" data-nav-target>Work</a>
-      <a href="#education" class="nav-link" data-nav-target>Education</a>
-      <a href="#contact" class="nav-link" data-nav-target>Contact</a>
-    </nav>
+<div class="cursor" data-cursor aria-hidden="true"></div>
 
-    <a href="./assets/Sahil-Nasariwala_CV.pdf" class="nav-cta" download>Resume</a>
-  </header>
+<header class="site-nav" data-nav>
+  <a href="#hero" class="nav-brand">SN<span class="accent">.</span></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#work" class="nav-link">Work</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+  <a href="./assets/Sahil-Nasariwala_CV.pdf" class="nav-cta" data-magnetic download>Resume</a>
+</header>
 
-  <main>
-
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="hero">
-      <div class="hero-grid">
-
-        <div class="hero-lead">
-          <p class="eyebrow reveal"><span class="mono">// frontend engineer</span></p>
-          <h1 class="hero-name reveal">
-            <span>Sahil</span>
-            <span class="hero-name-accent">Nasariwala</span>
-          </h1>
-          <p class="hero-tagline reveal">
-            I build <em>scalable</em> enterprise web applications — high-performance
-            analytics dashboards &amp; automation systems used in large-scale
-            monitoring environments.
-          </p>
-
-          <div class="hero-actions reveal">
-            <a href="./assets/Sahil-Nasariwala_CV.pdf" class="btn btn-primary" download>
-              Download Resume
-            </a>
-            <a href="#work" class="btn btn-ghost">View Work →</a>
-          </div>
-
-          <ul class="hero-socials reveal" aria-label="Social links">
-            <li><a href="https://www.linkedin.com/in/sahil-nasariwala-622591195/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://github.com/SahilNasariwala" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://leetcode.com/sahil_nasariwala/" target="_blank" rel="noopener">LeetCode</a></li>
-          </ul>
-        </div>
-
-        <aside class="hero-side reveal">
-          <figure class="hero-portrait">
-            <img src="./assets/images/my-avatar.png" alt="Portrait of Sahil Nasariwala" width="320">
-          </figure>
-          <dl class="hero-meta">
-            <div><dt>Based in</dt><dd>Ahmedabad, India</dd></div>
-            <div><dt>Experience</dt><dd>3.5+ years</dd></div>
-            <div><dt>Focus</dt><dd>Vue · React · TS</dd></div>
-          </dl>
-        </aside>
-
-      </div>
-
-      <div class="hero-marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>Playwright</span><span>Pinia</span><span>Vuetify</span><span>Performance</span><span>Accessibility</span><span>AWS</span>
-          <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>Playwright</span><span>Pinia</span><span>Vuetify</span><span>Performance</span><span>Accessibility</span><span>AWS</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= ABOUT ================= -->
-    <section class="section" id="about">
-      <div class="section-head reveal">
-        <span class="section-index">01</span>
-        <h2 class="section-title">About</h2>
-      </div>
-      <div class="about-body reveal">
-        <p class="about-lead">
-          Frontend Engineer with <strong>3.5+ years</strong> building scalable enterprise
-          web applications with Vue.js, React, and TypeScript — delivering high-performance
-          analytics dashboards and automation systems used in large-scale monitoring environments.
-        </p>
-        <p>
-          I'm strong in reusable component architecture, state management, rendering and
-          bundle optimization, accessibility, and AI-assisted development and testing.
-          I care about shipping interfaces that stay fast and dependable at scale.
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= EXPERIENCE ================= -->
-    <section class="section" id="experience">
-      <div class="section-head reveal">
-        <span class="section-index">02</span>
-        <h2 class="section-title">Experience</h2>
-      </div>
-
-      <ol class="timeline">
-
-        <li class="timeline-item reveal">
-          <div class="timeline-when"><span class="mono">May 2025 — Present</span></div>
-          <div class="timeline-body">
-            <h3 class="role">Software Engineer <span class="at">@ Motadata</span></h3>
-            <p class="role-loc mono">Ahmedabad, India</p>
-            <ul class="bullets">
-              <li>Built and shipped multiple core modules across a large-scale enterprise network-monitoring SPA serving customers running <strong>10,000+ monitors</strong> — APM, RUM, Flow Analytics, and NetRoute reporting.</li>
-              <li>Developed the <strong>Log Pattern Analysis</strong> module that scans millions of log lines and surfaces the top 500 meaningful patterns, accelerating incident triage for operations teams.</li>
-              <li>Delivered <strong>Forecast &amp; Capacity Planning</strong> reports with ML-driven projections, helping teams identify infrastructure bottlenecks before they impact service.</li>
-              <li>Optimized and hardened module UIs for high-volume telemetry, sustaining responsive performance at the 10,000+ monitor scale.</li>
-              <li>Built a <strong>Figma-to-code workflow</strong> converting designs into production-ready Vue components, accelerating delivery and design-to-build fidelity.</li>
-              <li>Architected a <strong>multi-agent Playwright E2E pipeline</strong> (6 agents, 7 validation waves) and authored unit tests with AI-assisted workflows (Cursor, Claude Code), sharply improving regression reliability.</li>
-            </ul>
-          </div>
-        </li>
-
-        <li class="timeline-item reveal">
-          <div class="timeline-when"><span class="mono">Dec 2022 — Apr 2025</span></div>
-          <div class="timeline-body">
-            <h3 class="role">Frontend Developer <span class="at">@ Meditab Software</span></h3>
-            <p class="role-loc mono">Ahmedabad, India</p>
-            <ul class="bullets">
-              <li>Built a high-performance healthcare platform with Vue.js and Vuetify, driving a <strong>25% increase</strong> in user engagement.</li>
-              <li>Cut application load time by <strong>30%</strong> through bundle optimization, lazy loading, and rendering improvements.</li>
-              <li>Co-authored a reusable component library (published internally via npm) that standardized UI patterns across teams and accelerated development velocity.</li>
-              <li>Partnered with product, design, and backend teams across agile sprints to ship scalable, accessible, user-focused features.</li>
-            </ul>
-          </div>
-        </li>
-
-        <li class="timeline-item reveal">
-          <div class="timeline-when"><span class="mono">May 2022 — Jun 2022</span></div>
-          <div class="timeline-body">
-            <h3 class="role">ReactJS Developer Intern <span class="at">@ Tatvasoft</span></h3>
-            <p class="role-loc mono">Ahmedabad, India</p>
-            <ul class="bullets">
-              <li>Shipped multiple production modules for the Book-e-Sell e-commerce platform in React.js, owning features end-to-end from UI build to backend integration.</li>
-              <li>Refactored and optimized reusable UI components, improving render performance and ensuring seamless integration with backend REST APIs.</li>
-              <li>Earned the <strong>Star Performer Award</strong> for exceptional delivery impact — recognized among interns for code quality and ownership.</li>
-            </ul>
-          </div>
-        </li>
-
-      </ol>
-    </section>
-
-    <!-- ================= SKILLS ================= -->
-    <section class="section" id="skills">
-      <div class="section-head reveal">
-        <span class="section-index">03</span>
-        <h2 class="section-title">Skills</h2>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-group reveal">
-          <h3 class="skill-label mono">Languages</h3>
-          <ul class="chips">
-            <li>JavaScript</li><li>TypeScript</li><li>HTML5</li><li>CSS3</li><li>Sass</li>
-          </ul>
-        </div>
-        <div class="skill-group reveal">
-          <h3 class="skill-label mono">Frontend</h3>
-          <ul class="chips">
-            <li>Vue.js</li><li>React.js</li><li>Vuetify</li><li>Pinia</li><li>Vuex</li><li>Quasar</li><li>Bootstrap</li>
-          </ul>
-        </div>
-        <div class="skill-group reveal">
-          <h3 class="skill-label mono">Testing &amp; Automation</h3>
-          <ul class="chips">
-            <li>Playwright</li><li>Jest</li><li>End-to-End Testing</li><li>CI Integration</li>
-          </ul>
-        </div>
-        <div class="skill-group reveal">
-          <h3 class="skill-label mono">Tools &amp; Platforms</h3>
-          <ul class="chips">
-            <li>Git</li><li>npm</li><li>AWS</li><li>Cursor</li><li>Claude Code</li>
-          </ul>
-        </div>
-        <div class="skill-group reveal">
-          <h3 class="skill-label mono">Concepts</h3>
-          <ul class="chips">
-            <li>Component Architecture</li><li>State Management</li><li>Performance Optimization</li><li>Accessibility (a11y)</li><li>Responsive UI</li><li>Agile</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= WORK / PROJECTS ================= -->
-    <section class="section" id="work">
-      <div class="section-head reveal">
-        <span class="section-index">04</span>
-        <h2 class="section-title">Work</h2>
-      </div>
-
-      <ul class="project-list">
-
-        <li class="project-card reveal">
-          <a href="https://github.com/SahilNasariwala/Movie-Mania" target="_blank" rel="noopener">
-            <figure class="project-img">
-              <img src="./assets/images/project-1.jpg" alt="Movie Mania project" loading="lazy">
-            </figure>
-            <div class="project-meta">
-              <h3 class="project-title">Movie Mania</h3>
-              <p class="project-cat mono">Web · JavaScript</p>
-              <span class="project-arrow">↗</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="project-card reveal">
-          <a href="https://github.com/SahilNasariwala/Qnow-app" target="_blank" rel="noopener">
-            <figure class="project-img">
-              <img src="./assets/images/project-2.png" alt="QNOW app project" loading="lazy">
-            </figure>
-            <div class="project-meta">
-              <h3 class="project-title">QNOW</h3>
-              <p class="project-cat mono">Mobile App</p>
-              <span class="project-arrow">↗</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="project-card reveal">
-          <a href="https://github.com/SahilNasariwala/MovieReviewAndRecommend" target="_blank" rel="noopener">
-            <figure class="project-img">
-              <img src="./assets/images/project-3.jpg" alt="Movie Review and Recommend project" loading="lazy">
-            </figure>
-            <div class="project-meta">
-              <h3 class="project-title">Movie Review &amp; Recommend</h3>
-              <p class="project-cat mono">Web · Recommendation</p>
-              <span class="project-arrow">↗</span>
-            </div>
-          </a>
-        </li>
-
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <p class="hero-eyebrow mono" data-reveal><span aria-hidden="true">// </span>frontend engineer</p>
+    <h1 class="hero-name">
+      <span class="line" data-line>Sahil</span>
+      <span class="line" data-line>Nasariwala<span class="accent">.</span></span>
+    </h1>
+    <p class="hero-tagline" data-reveal>
+      I build <em>scalable</em> enterprise interfaces — analytics dashboards
+      &amp; automation systems that stay fast at 10,000-monitor scale.
+    </p>
+    <div class="hero-row" data-reveal>
+      <a href="#contact" class="btn-pill" data-magnetic>Let's talk <span class="arrow" aria-hidden="true">→</span></a>
+      <ul class="hero-socials" aria-label="Social links">
+        <li><a href="https://www.linkedin.com/in/sahil-nasariwala-622591195/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/SahilNasariwala" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://leetcode.com/sahil_nasariwala/" target="_blank" rel="noopener">LeetCode</a></li>
       </ul>
-    </section>
+    </div>
+    <div class="hero-meta mono" data-reveal>
+      <span>AHMEDABAD, IN</span><span>3.5+ YEARS</span><span>VUE · REACT · TS</span>
+    </div>
+    <div class="scroll-hint mono" aria-hidden="true">scroll<span class="scroll-hint-line"></span></div>
+  </section>
 
-    <!-- ================= EDUCATION & ACHIEVEMENTS ================= -->
-    <section class="section" id="education">
-      <div class="section-head reveal">
-        <span class="section-index">05</span>
-        <h2 class="section-title">Education &amp; Achievements</h2>
-      </div>
+  <!-- STATS -->
+  <section class="stats" aria-label="Career highlights">
+    <ul class="stats-row">
+      <li><span class="stat-num" data-count="10000" data-suffix="+">10,000+</span><span class="stat-label mono">monitors served</span></li>
+      <li><span class="stat-num" data-count="3.5" data-suffix="+" data-decimals="1">3.5+</span><span class="stat-label mono">years experience</span></li>
+      <li><span class="stat-num" data-count="30" data-suffix="%">30%</span><span class="stat-label mono">faster load times</span></li>
+      <li><span class="stat-num" data-count="25" data-suffix="%">25%</span><span class="stat-label mono">engagement lift</span></li>
+      <li><span class="stat-num" data-count="9.36" data-decimals="2">9.36</span><span class="stat-label mono">CGPA / 10</span></li>
+    </ul>
+  </section>
 
-      <div class="edu-grid">
-        <article class="edu-card reveal">
-          <span class="mono edu-when">2019 — 2023</span>
-          <h3 class="edu-title">B.Tech, Information Technology</h3>
-          <p class="edu-sub">Charotar University of Science and Technology · Anand, India</p>
-          <p class="edu-note"><strong>CGPA 9.36 / 10</strong></p>
-        </article>
-
-        <ul class="achievements reveal">
-          <li>
-            <span class="ach-mark mono">★</span>
-            <p><strong>1st place</strong> — 36+ hour organization-wide hackathon at Motadata, driving the winning solution with a cross-functional team.</p>
-          </li>
-          <li>
-            <span class="ach-mark mono">★</span>
-            <p><strong>Team Recognition — Excellence in Log Pattern Innovation</strong> at Motadata, for introducing intelligent log pattern detection that reduces noise and accelerates root-cause identification in the AIOps platform.</p>
-          </li>
-          <li>
-            <span class="ach-mark mono">✓</span>
-            <p><strong>AWS Certified Cloud Practitioner.</strong></p>
-          </li>
-          <li>
-            <span class="ach-mark mono">★</span>
-            <p><strong>Star Performer Award</strong> at Tatvasoft for code quality and ownership.</p>
-          </li>
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <header class="section-head">
+      <span class="section-index mono">01</span>
+      <h2 class="section-title" data-line>About</h2>
+    </header>
+    <div class="about-grid">
+      <p class="about-lead" data-words>
+        Frontend engineer with 3.5+ years building scalable enterprise web applications
+        with Vue.js, React, and TypeScript — high-performance analytics dashboards and
+        automation systems used in large-scale monitoring environments. Strong in component
+        architecture, state management, rendering and bundle optimization, accessibility,
+        and AI-assisted development and testing.
+      </p>
+      <aside class="about-card" data-reveal aria-label="Quick facts">
+        <ul class="about-facts">
+          <li><span class="mono">Role</span><strong>Frontend Engineer</strong></li>
+          <li><span class="mono">Currently</span><strong>Building @ Motadata</strong></li>
+          <li><span class="mono">Location</span><strong>Ahmedabad, India</strong></li>
+          <li><span class="mono">Experience</span><strong>3.5+ years</strong></li>
+          <li><span class="mono">Stack</span><strong>Vue · React · TypeScript</strong></li>
+          <li><span class="mono">Certified</span><strong class="accent">AWS Cloud Practitioner</strong></li>
         </ul>
-      </div>
-    </section>
+      </aside>
+    </div>
+  </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section class="section section-contact" id="contact">
-      <div class="section-head reveal">
-        <span class="section-index">06</span>
-        <h2 class="section-title">Get in touch</h2>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-intro reveal">
-          <p class="contact-big">Let's build something <em>fast</em>.</p>
-          <ul class="contact-links">
-            <li><span class="mono">email</span><a href="mailto:sahilnasariwala123@gmail.com">sahilnasariwala123@gmail.com</a></li>
-            <li><span class="mono">phone</span><a href="tel:+919054301777">+91 90543 01777</a></li>
-            <li><span class="mono">linkedin</span><a href="https://www.linkedin.com/in/sahil-nasariwala-622591195/" target="_blank" rel="noopener">/in/sahil-nasariwala</a></li>
-            <li><span class="mono">github</span><a href="https://github.com/SahilNasariwala" target="_blank" rel="noopener">/SahilNasariwala</a></li>
-          </ul>
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <header class="section-head">
+      <span class="section-index mono">02</span>
+      <h2 class="section-title" data-line>Experience</h2>
+    </header>
+    <ol class="xp-list">
+      <li class="xp-item" data-reveal>
+        <div class="xp-side">
+          <span class="xp-when mono">May 2025 — Present</span>
+          <h3 class="xp-role">Software Engineer</h3>
+          <p class="xp-org">Motadata · Ahmedabad</p>
         </div>
+        <ul class="xp-bullets">
+          <li>Shipped core modules across a large-scale enterprise network-monitoring SPA serving customers running <strong>10,000+ monitors</strong> — APM, RUM, Flow Analytics, NetRoute reporting.</li>
+          <li>Built the <strong>Log Pattern Analysis</strong> module scanning millions of log lines to surface the top 500 meaningful patterns, accelerating incident triage.</li>
+          <li>Delivered <strong>Forecast &amp; Capacity Planning</strong> reports with ML-driven projections, surfacing infrastructure bottlenecks before they impact service.</li>
+          <li>Built a <strong>Figma-to-code workflow</strong> converting designs into production-ready Vue components.</li>
+          <li>Architected a <strong>multi-agent Playwright E2E pipeline</strong> (6 agents, 7 validation waves) with AI-assisted workflows, sharply improving regression reliability.</li>
+        </ul>
+      </li>
+      <li class="xp-item" data-reveal>
+        <div class="xp-side">
+          <span class="xp-when mono">Dec 2022 — Apr 2025</span>
+          <h3 class="xp-role">Frontend Developer</h3>
+          <p class="xp-org">Meditab Software · Ahmedabad</p>
+        </div>
+        <ul class="xp-bullets">
+          <li>Built a high-performance healthcare platform with Vue.js and Vuetify, driving a <strong>25% increase</strong> in user engagement.</li>
+          <li>Cut application load time by <strong>30%</strong> via bundle optimization, lazy loading, and rendering improvements.</li>
+          <li>Co-authored a reusable component library (internal npm) standardizing UI patterns across teams.</li>
+          <li>Partnered with product, design, and backend across agile sprints to ship scalable, accessible features.</li>
+        </ul>
+      </li>
+      <li class="xp-item" data-reveal>
+        <div class="xp-side">
+          <span class="xp-when mono">May 2022 — Jun 2022</span>
+          <h3 class="xp-role">ReactJS Intern</h3>
+          <p class="xp-org">Tatvasoft · Ahmedabad</p>
+        </div>
+        <ul class="xp-bullets">
+          <li>Shipped production modules for the Book-e-Sell e-commerce platform in React.js, owning features end-to-end.</li>
+          <li>Refactored reusable UI components, improving render performance and REST API integration.</li>
+          <li>Earned the <strong>Star Performer Award</strong> for code quality and ownership.</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
 
-        <form class="contact-form reveal" action="mailto:sahilnasariwala123@gmail.com" method="POST" enctype="text/plain">
-          <div class="field">
-            <label for="c-name" class="mono">name</label>
-            <input type="text" name="name" id="c-name" placeholder="Your name" required>
-          </div>
-          <div class="field">
-            <label for="c-email" class="mono">email</label>
-            <input type="email" name="email" id="c-email" placeholder="you@example.com" required>
-          </div>
-          <div class="field">
-            <label for="c-message" class="mono">message</label>
-            <textarea name="message" id="c-message" rows="5" placeholder="What are you working on?" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message →</button>
-        </form>
+  <!-- SKILLS -->
+  <section class="section section-skills" id="skills">
+    <header class="section-head">
+      <span class="section-index mono">03</span>
+      <h2 class="section-title" data-line>Skills</h2>
+    </header>
+    <div class="skills-marquee" aria-hidden="true">
+      <div class="marquee-track" data-marquee="left">
+        <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Pinia</span><span>Vuetify</span><span>Quasar</span><span>Sass</span>
+        <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Pinia</span><span>Vuetify</span><span>Quasar</span><span>Sass</span>
       </div>
-    </section>
+      <div class="marquee-track" data-marquee="right">
+        <span>Playwright</span><span>Jest</span><span>AWS</span><span>Git</span><span>Claude Code</span><span>Cursor</span><span>Accessibility</span><span>Performance</span>
+        <span>Playwright</span><span>Jest</span><span>AWS</span><span>Git</span><span>Claude Code</span><span>Cursor</span><span>Accessibility</span><span>Performance</span>
+      </div>
+    </div>
+    <div class="skills-groups">
+      <div class="skill-group" data-reveal>
+        <h3 class="skill-label mono">Languages</h3>
+        <ul class="chips"><li>JavaScript</li><li>TypeScript</li><li>HTML5</li><li>CSS3</li><li>Sass</li></ul>
+      </div>
+      <div class="skill-group" data-reveal>
+        <h3 class="skill-label mono">Frontend</h3>
+        <ul class="chips"><li>Vue.js</li><li>React.js</li><li>Vuetify</li><li>Pinia</li><li>Vuex</li><li>Quasar</li></ul>
+      </div>
+      <div class="skill-group" data-reveal>
+        <h3 class="skill-label mono">Testing &amp; Automation</h3>
+        <ul class="chips"><li>Playwright</li><li>Jest</li><li>E2E Testing</li><li>CI Integration</li></ul>
+      </div>
+      <div class="skill-group" data-reveal>
+        <h3 class="skill-label mono">Tools &amp; Concepts</h3>
+        <ul class="chips"><li>Git</li><li>AWS</li><li>Cursor</li><li>Claude Code</li><li>Component Architecture</li><li>State Management</li><li>a11y</li></ul>
+      </div>
+    </div>
+  </section>
 
-  </main>
+  <!-- WORK -->
+  <section class="section" id="work">
+    <header class="section-head">
+      <span class="section-index mono">04</span>
+      <h2 class="section-title" data-line>Work</h2>
+    </header>
+    <ul class="work-list">
+      <li data-reveal>
+        <a class="work-row" href="https://github.com/SahilNasariwala/Movie-Mania" target="_blank" rel="noopener">
+          <span class="work-num mono">001</span>
+          <h3 class="work-title">Movie Mania</h3>
+          <span class="work-cat mono">Web · JavaScript</span>
+          <span class="work-arrow accent" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="work-row" href="https://github.com/SahilNasariwala/Qnow-app" target="_blank" rel="noopener">
+          <span class="work-num mono">002</span>
+          <h3 class="work-title">QNOW</h3>
+          <span class="work-cat mono">Mobile App</span>
+          <span class="work-arrow accent" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li data-reveal>
+        <a class="work-row" href="https://github.com/SahilNasariwala/MovieReviewAndRecommend" target="_blank" rel="noopener">
+          <span class="work-num mono">003</span>
+          <h3 class="work-title">Movie Review &amp; Recommend</h3>
+          <span class="work-cat mono">Web · Recommendation</span>
+          <span class="work-arrow accent" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    </ul>
+  </section>
 
-  <footer class="site-footer">
-    <p class="mono">© <span data-year></span> Sahil Nasariwala — built &amp; designed by hand.</p>
-    <a href="#hero" class="to-top mono">Back to top ↑</a>
-  </footer>
+  <!-- NOW -->
+  <aside class="now-strip" data-reveal aria-label="What I'm up to now">
+    <span class="now-dot" aria-hidden="true"></span>
+    <p class="mono">NOW — shipping Log Pattern Analysis @ Motadata · exploring AI-assisted development &amp; testing · AWS Certified Cloud Practitioner</p>
+  </aside>
 
-  <script src="./assets/js/script.js"></script>
+  <!-- EDUCATION & ACHIEVEMENTS -->
+  <section class="section" id="education">
+    <header class="section-head">
+      <span class="section-index mono">05</span>
+      <h2 class="section-title" data-line>Education &amp; Honors</h2>
+    </header>
+    <div class="edu-grid">
+      <article class="edu-card" data-reveal>
+        <span class="mono edu-when">2019 — 2023</span>
+        <h3 class="edu-title">B.Tech, Information Technology</h3>
+        <p class="edu-sub">Charotar University of Science &amp; Technology</p>
+        <p class="edu-note accent mono">CGPA 9.36 / 10</p>
+      </article>
+      <ul class="honors" data-reveal>
+        <li><strong>1st place</strong> — 36+ hour organization-wide hackathon at Motadata.</li>
+        <li><strong>Team Recognition</strong> — Excellence in Log Pattern Innovation (Motadata AIOps).</li>
+        <li><strong>AWS Certified</strong> Cloud Practitioner.</li>
+        <li><strong>Star Performer Award</strong> at Tatvasoft.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="contact-eyebrow mono" data-reveal><span aria-hidden="true">// </span>open to interesting problems</p>
+    <h2 class="contact-big">
+      <span class="line" data-line>Let's work</span>
+      <span class="line" data-line><em>together.</em></span>
+    </h2>
+    <a href="mailto:sahilnasariwala123@gmail.com" class="btn-pill btn-pill-lg" data-magnetic data-reveal>
+      sahilnasariwala123@gmail.com <span class="arrow" aria-hidden="true">→</span>
+    </a>
+    <ul class="contact-links mono" data-reveal>
+      <li><a href="tel:+919054301777">+91 90543 01777</a></li>
+      <li><a href="https://www.linkedin.com/in/sahil-nasariwala-622591195/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/SahilNasariwala" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://leetcode.com/sahil_nasariwala/" target="_blank" rel="noopener">LeetCode</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p class="mono">© <span data-year>2026</span> Sahil Nasariwala — designed &amp; built by hand.</p>
+  <p class="mono"><span data-clock>--:--</span> IST · Ahmedabad</p>
+  <a href="#hero" class="to-top mono">Top <span aria-hidden="true">↑</span></a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+<script src="./assets/js/script.js" defer></script>
 
 </body>
 
