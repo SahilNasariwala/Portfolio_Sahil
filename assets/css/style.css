@@ -149,6 +149,15 @@ html.js-cursor .cursor { display: block; }
 .hero-socials a { font-size: 0.85rem; color: var(--muted); transition: color 0.25s; }
 .hero-socials a:hover { color: var(--accent); }
 .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 60px; color: var(--muted); }
+/* Toptal badge: static below hero content on mobile, pinned right on desktop.
+   No CSS transform here — GSAP animates transform on [data-reveal]. */
+.hero-toptal { margin-top: 56px; align-self: center; }
+@media (min-width: 901px) {
+  .hero-toptal {
+    position: absolute; right: var(--pad); top: 52%;
+    margin-top: 0; align-self: auto;
+  }
+}
 .scroll-hint {
   position: absolute; bottom: 28px; right: var(--pad);
   display: flex; align-items: center; gap: 10px; color: var(--muted);
