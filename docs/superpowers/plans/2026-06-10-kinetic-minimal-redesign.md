@@ -184,8 +184,8 @@ Complete body markup (between `<body>` and the script tags). Note: no contact fo
     </header>
     <div class="skills-marquee" aria-hidden="true">
       <div class="marquee-track" data-marquee="left">
-        <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Pinia</span><span>Vuetify</span><span>Quasar</span><span>Sass</span>
-        <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Pinia</span><span>Vuetify</span><span>Quasar</span><span>Sass</span>
+        <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Pinia</span><span>Vuetify</span><span>Quasar</span><span>saas</span>
+        <span>Vue.js</span><span>React.js</span><span>TypeScript</span><span>JavaScript</span><span>Pinia</span><span>Vuetify</span><span>Quasar</span><span>saas</span>
       </div>
       <div class="marquee-track" data-marquee="right">
         <span>Playwright</span><span>Jest</span><span>AWS</span><span>Git</span><span>Claude Code</span><span>Cursor</span><span>Accessibility</span><span>Performance</span>
@@ -195,7 +195,7 @@ Complete body markup (between `<body>` and the script tags). Note: no contact fo
     <div class="skills-groups">
       <div class="skill-group" data-reveal>
         <h3 class="skill-label mono">Languages</h3>
-        <ul class="chips"><li>JavaScript</li><li>TypeScript</li><li>HTML5</li><li>CSS3</li><li>Sass</li></ul>
+        <ul class="chips"><li>JavaScript</li><li>TypeScript</li><li>HTML5</li><li>CSS3</li><li>saas</li></ul>
       </div>
       <div class="skill-group" data-reveal>
         <h3 class="skill-label mono">Frontend</h3>

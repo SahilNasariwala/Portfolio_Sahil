@@ -277,6 +277,10 @@ html.js-cursor .cursor { display: block; }
 }
 .work-row:hover .work-title { color: var(--accent); }
 .work-cat { color: var(--muted); }
+.work-desc {
+  margin-top: 10px; max-width: 52ch;
+  font-size: clamp(0.85rem, 1.4vw, 0.98rem); line-height: 1.5; color: var(--muted);
+}
 .work-arrow { font-size: clamp(1.3rem, 2.5vw, 2rem); transition: transform 0.35s var(--ease); }
 .work-row:hover .work-arrow { transform: translate(6px, -6px); }
 
